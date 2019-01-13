@@ -1026,7 +1026,66 @@ class Program
     }
 }
 ```
+### Oefening 24
+```csharp
+class Program
+    {
+        static void Main(string[] args)
+        {
+            const int LENGTE = 10, BREETTE = 10;
+            int[,] dambord = new int[LENGTE, BREETTE];
+            int[] kleur = new int[BREETTE];
+            int[] tussen = new int[BREETTE];
+            bool even = false;
 
+            for (int teller = 0; teller < BREETTE; teller++)
+            {
+                if (even)
+                {
+                    kleur[teller] = 1;
+                    even = false;
+                }
+                else
+                    even = true;
+            }
+            kleur.CopyTo(tussen, 0);
+            even = true;
+
+            foreach (int i in kleur)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
+
+            for (int lengteteller = 0; lengteteller < LENGTE; lengteteller++)
+            {
+                if (lengteteller < 4 || lengteteller > 5)
+                {
+                    for (int breetteteller = 0; breetteteller < BREETTE; breetteteller++)
+                    {
+                        dambord[lengteteller, breetteteller] = kleur[breetteteller];
+                    }
+
+                    for (int teller = 0; teller < BREETTE; teller++)
+                    {
+                        kleur[(teller + 1) % BREETTE] = tussen[teller];
+                    }
+                    kleur.CopyTo(tussen, 0);
+                }
+            }
+            Console.WriteLine();
+            for (int lengteteller = 0; lengteteller < LENGTE; lengteteller++)
+            {
+                    for (int breetteteller = 0; breetteteller < BREETTE; breetteteller++)
+                    {
+                        Console.Write(dambord[lengteteller, breetteteller] + " ");
+
+                    }
+                Console.WriteLine();
+            }
+        }
+    }
+```
 ### Oefening 26, 27
 ```csharp
 class Program
